@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import PodcastDetail from './PodcastDetail'
 import Episode from './Episode'
 
+//Component to redirect to detail (id) or episode (episode/:episodeId)
 class Podcast extends Component {
     render() {
       return (

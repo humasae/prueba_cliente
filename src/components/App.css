@@ -8,7 +8,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,6 +19,17 @@
 
 .App-link {
   color: #61dafb;
+}
+
+img {
+  border-radius: 50%;
+}
+
+.PodcastDetail-main {
+  float: left;
+  margin: 10px;
+  height: 300px;
+  width: 200px;
 }
 
 @keyframes App-logo-spin {

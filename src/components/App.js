@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Main from './Main'
+import MainRouter from './MainRouter'
 import Header from './Header'
 import './App.css';
 
@@ -9,7 +9,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <Header/>
-          <Main />
+          <MainRouter />
         </header>
       </div>
     );

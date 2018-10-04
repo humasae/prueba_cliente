@@ -1,16 +1,16 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import MainView from './MainView'
-import Podcast from './Podcast'
+import PodcastRouter from './PodcastRouter'
 
 
-const Main = () => (
+const MainRouter = () => (
   <main>
     <Switch>
       <Route exact path='/' component={MainView}/>
-      <Route path='/podcast' component={Podcast}/>      
+      <Route path='/podcast' component={PodcastRouter}/>      
     </Switch>
   </main>
 )
 
-export default Main
+export default MainRouter

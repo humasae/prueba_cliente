@@ -4,7 +4,7 @@ import PodcastDetail from './PodcastDetail'
 import Episode from './Episode'
 
 //Component to redirect to detail (id) or episode (episode/:episodeId)
-class Podcast extends Component {
+class PodcastRouter extends Component {
     render() {
       return (
         <Switch>
@@ -15,4 +15,4 @@ class Podcast extends Component {
     }
   }
   
-  export default Podcast;
+  export default PodcastRouter;

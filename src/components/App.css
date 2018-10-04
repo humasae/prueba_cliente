@@ -9,12 +9,10 @@
 
 .App-header {
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  float: left;
+  justify-content: left;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .App-link {
@@ -25,11 +23,31 @@ img {
   border-radius: 50%;
 }
 
+a{
+  text-decoration: none;
+}
+
 .PodcastDetail-main {
   float: left;
   margin: 10px;
   height: 300px;
   width: 200px;
+  box-shadow: 10px 10px 5px grey;
+  
+}
+
+.Header-header {
+  text-align: left;
+}
+
+.title{
+  color: black;
+  font-size: 14px;
+}
+
+.author{
+  color: gray;
+  font-size: 10px;
 }
 
 @keyframes App-logo-spin {

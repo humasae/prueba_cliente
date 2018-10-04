@@ -15,20 +15,30 @@ class MainView extends Component {
 
 
   componentDidMount() {
-		this.llamadaAxios();
+    //check localstorage to get podcasts
+    let podcastsStorage = localStorage.getItem('podcasts');
+    if(podcastsStorage == null){
+      //get podcast from itunes
+      this.axiosCalling();
+      localStorage.setItem('podcasts', this.state.podcasts);
+    }else{
+      this.setState({podcasts:JSON.parse(podcastsStorage)});
+    }
   }
 
-  llamadaAxios(){
+  axiosCalling(){
     let thisElement = this;
     const URLPODCAST = 'https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json';
 		axios.get(URLPODCAST)
       .then(function (respPodcast) {
         let results = respPodcast.data;
         let resultsKeys = Object.keys(results);
+        console.log('SI QUE SE LLAMA A axios')
 
         //Check if entries exists
         if(_.hasIn(resultsKeys, 'entries')){
           thisElement.setState({podcasts:results.feed.entry});
+          localStorage.setItem('podcasts', JSON.stringify(thisElement.state.podcasts));
         }else{
           thisElement.setState({podcasts:[]});
         }
@@ -41,13 +51,8 @@ class MainView extends Component {
   render() {
     return (
       <div className="MainView">
-        <header className="MainView-header">
-          <p>
-              Vista principal
-          </p>
-        </header>
           {this.state.podcasts.map((elem, index) => {
-              return	<PodcastListElement detail={elem}/>
+              return	<PodcastListElement key={elem["id"]["attributes"]["im:id"]} detail={elem}/>
             }
           )}
       </div>

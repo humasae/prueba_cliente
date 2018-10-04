@@ -9,6 +9,7 @@ class Header extends Component {
             <p>
             <Link to='/'>podcaster</Link>
             </p>
+            <hr/>
           </header>
         </div>
       );

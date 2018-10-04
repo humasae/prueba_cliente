@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import './App.css';
 
 class PodcastListElement extends Component {
@@ -9,7 +8,6 @@ class PodcastListElement extends Component {
   }
     render() {
       let podcastId = this.props.detail["id"]["attributes"]["im:id"];
-      console.log(this.props.detail)
       return (
         <div className="PodcastDetail-main">
             

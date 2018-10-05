@@ -20,19 +20,23 @@ class MainView extends Component {
   filterChange(data){
     this.setState({
       filter: data
+    }, function(){
+      this.filterPodcasts()
     });
-    this.filterPodcasts();
+    ;
   }
 
   filterPodcasts(){
     let filterNew = this.state.filter;
+    console.log('el valor de nuevo filtro: ' + filterNew)
+    
     if(filterNew !== ""){
       let podcastToFilter = this.state.podcasts;
       let podcastFiltered = podcastToFilter.filter(podcast => (
         podcast.title.toUpperCase().includes(filterNew.toUpperCase()) ||
         podcast.author.toUpperCase().includes(filterNew.toUpperCase())
       ));
-      
+      console.log('set a podcastsFiltered');
       this.setState({podcastsFiltered: podcastFiltered});
     }else{
       this.setState({podcastsFiltered: this.state.podcasts});
@@ -63,6 +67,7 @@ class MainView extends Component {
         author: elem["im:artist"].label
       }
       simplyPodcasts.push(sp);
+      return true;
     })
     return simplyPodcasts;
   }

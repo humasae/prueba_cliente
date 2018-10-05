@@ -11,7 +11,7 @@ class PodcastListElement extends Component {
     return (
       <li className="flex-item ">
         <div className="recuadro">
-            <a className={"/podcast/" + podcastId}>
+            <a href={"/podcast/" + podcastId}>
               <div className="recuadro-icono">
                 <img src={image} alt={title}/>
               </div>

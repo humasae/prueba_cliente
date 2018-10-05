@@ -82,6 +82,7 @@ class MainView extends Component {
 
         //Check if the property 'entries' exists
         if(_.hasIn(resultsKeys, 'entries')){
+          console.log(results.feed.entry);
           let oPodcasts = thisElement.formatPodcasts(results.feed.entry);
           
           thisElement.setState({podcasts:oPodcasts});

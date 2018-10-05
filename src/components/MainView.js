@@ -12,6 +12,7 @@ class MainView extends Component {
     
     this.state = {
       podcasts: [],
+      podcastsFiltered: [],
       filter: "",
     };
   }
@@ -28,10 +29,13 @@ class MainView extends Component {
     if(filterNew !== ""){
       let podcastToFilter = this.state.podcasts;
       let podcastFiltered = podcastToFilter.filter(podcast => (
-        podcast["title"]["label"].toUpperCase().includes(filterNew.toUpperCase())
+        podcast.title.toUpperCase().includes(filterNew.toUpperCase()) ||
+        podcast.author.toUpperCase().includes(filterNew.toUpperCase())
       ));
       
-      this.setState({podcasts: podcastFiltered});
+      this.setState({podcastsFiltered: podcastFiltered});
+    }else{
+      this.setState({podcastsFiltered: this.state.podcasts});
     }
   }
 
@@ -41,12 +45,26 @@ class MainView extends Component {
     if(podcastsStorage == null){
       //get podcast from itunes
       this.axiosCalling();
-      localStorage.setItem('podcasts', this.state.podcasts);
     }else{
       this.setState({podcasts:JSON.parse(podcastsStorage)});
+      this.setState({podcastsFiltered:JSON.parse(podcastsStorage)});
     }
+  }
+
+  //function to simplify the object received
+  formatPodcasts(data){
+    let simplyPodcasts = [];
     
-    
+    data.map((elem, index) => {
+      let sp = {
+        id: elem["id"]["attributes"]["im:id"],
+        image: elem["im:image"][2].label,
+        title: elem["title"].label.split(" - ")[0].toUpperCase(),
+        author: elem["im:artist"].label
+      }
+      simplyPodcasts.push(sp);
+    })
+    return simplyPodcasts;
   }
 
   axiosCalling(){
@@ -57,12 +75,17 @@ class MainView extends Component {
         let results = respPodcast.data;
         let resultsKeys = Object.keys(results);
 
-        //Check if entries exists
+        //Check if the property 'entries' exists
         if(_.hasIn(resultsKeys, 'entries')){
-          thisElement.setState({podcasts:results.feed.entry});
+          let oPodcasts = thisElement.formatPodcasts(results.feed.entry);
+          
+          thisElement.setState({podcasts:oPodcasts});
+          thisElement.filterPodcasts();
           localStorage.setItem('podcasts', JSON.stringify(thisElement.state.podcasts));
         }else{
+          console.log('Error receiving data from iTunes: no entries exist.');
           thisElement.setState({podcasts:[]});
+          thisElement.setState({podcastsFiltered:[]});
         }
       })
       .catch(function (error) {
@@ -71,16 +94,15 @@ class MainView extends Component {
   }
 
   render() {
-    console.log('el render');
     return (
-      <div className="MainView">
-        <TextFilter onFilterChange={this.filterChange}/>
-        {this.state.podcasts.map((elem, index) => {
-          return	<PodcastListElement key={elem["id"]["attributes"]["im:id"]} detail={elem}/>
+      <ul className="flex-container">
+        <TextFilter onFilterChange={this.filterChange} podcastsCount={this.state.podcastsFiltered.length}/>
+        {this.state.podcastsFiltered.map((elem, index) => {
+          return	<PodcastListElement key={elem.id} detail={elem}/>
         })}
-      </div>
+      </ul>
     );
   }
-  }
-  
-  export default MainView;
+}
+
+export default MainView;

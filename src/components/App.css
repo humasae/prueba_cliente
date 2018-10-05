@@ -21,6 +21,7 @@
 
 img {
   border-radius: 50%;
+  height: 120px;
 }
 
 a{
@@ -28,12 +29,7 @@ a{
 }
 
 .PodcastDetail-main {
-  float: left;
-  margin: 10px;
-  height: 300px;
-  width: 200px;
   box-shadow: 10px 10px 5px grey;
-  
 }
 
 .Header-header {
@@ -48,6 +44,56 @@ a{
 .author{
   color: gray;
   font-size: 10px;
+}
+
+.flex-container{
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  /*flex-flow: flex-wrap;*/
+  flex-flow: row wrap;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.flex-item {
+  padding:5px;    
+}
+
+.recuadro {
+  border-radius: 3px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+  display: block;
+  margin-top: 80px;
+  min-height: 100px;
+  width: 200px;
+  padding: 10px 25px;
+  text-align: center;
+}
+
+.recuadro-icono {
+  border-radius: 50%;
+  height: 125px;
+  margin: 0 auto;
+  margin-top: 0px;
+  margin-top: -80px;
+  padding-left: 10px;
+  padding-top: 5px;
+  width: 125px;
+}
+
+.textFilter {
+  border-radius: 3px;
+  float: left;
+  
+}
+.countFilter {
+  background-color: blue;
+  color: white;
+  float: left;
+  border-radius: 3px;
+  margin-right: 5px;
 }
 
 @keyframes App-logo-spin {

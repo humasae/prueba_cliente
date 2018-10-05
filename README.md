@@ -1,5 +1,8 @@
 # prueba_cliente
 
-## prueba de aplicación cliente
-## Prueba de repositorio en GitHub
-## Prueba de routing
+Para ejecutar el modo develop ejecutar nmp start
+
+Para ejecutarlo en modo release ejecutar:
+ - npm run build
+ - npm install -g serve
+ - serve -s build

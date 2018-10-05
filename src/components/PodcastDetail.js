@@ -13,4 +13,4 @@ class PodcastDetail extends Component {
   }
 }
   
-  export default PodcastDetail;
+export default PodcastDetail;
